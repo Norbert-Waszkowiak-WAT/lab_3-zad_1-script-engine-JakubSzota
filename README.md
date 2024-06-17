@@ -84,7 +84,7 @@ docker-compose up -d
 
 ### Urchomienie aplikacji
 ```bash
-./gradlew clean build bootRun
+w
 ```
 
 ### Podgląd endpointów w Swagerze

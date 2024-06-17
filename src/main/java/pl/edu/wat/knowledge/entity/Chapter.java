@@ -1,17 +1,22 @@
 package pl.edu.wat.knowledge.entity;
-
+ 
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.MongoId;
-
+ 
+import org.springframework.lang.Nullable;
 import java.util.List;
-
+ 
 @Data
-public class Author {
+public class Chapter {
     @MongoId
     private String id;
-    private String surname;
-    private String name;
+    private Integer score;
+    private String collection;
+    private String title;
+    private Book book;
     @DBRef
-    private Affiliation affiliation;
+    private Book book;
+    @DBRef
+    private List<Author> authors;
 }
