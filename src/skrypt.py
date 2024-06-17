@@ -10,7 +10,7 @@ def create_affiliation(parent=None):
     url = BASE_URL + '/affiliation'
     data = {
         "name": fake.company(),
-        "parent": create_affiliation()
+        "parent": create_affiliation() if random.random() < 0.25 else None
     }
     response = requests.post(url, json=data)
     if response.status_code == 201:
@@ -41,12 +41,6 @@ def create_author(parent=None):
 
 def create_article():
     url = BASE_URL + '/article'
-    journal = create_journal()
-    if not journal:
-        return None
-    authors = [create_author() for _ in range(3)]
-    if any(author is None for author in authors):
-        return None
     data = {
         "title": fake.text(),
         "collection": fake.word(),
@@ -55,8 +49,8 @@ def create_article():
         "year": random.randint(1900, 2023),
         "no": random.randint(1, 150),
         "articleNo": random.randint(1, 50),
-        "journal": journal.get('id'),
-        "authors": authors
+        "journal": create_journal(),
+        "authors": [create_author(), create_author(), create_author()]
     }
     response = requests.post(url, json=data)
     if response.status_code == 201:
@@ -101,10 +95,10 @@ def create_publisher():
         print("Publisher status:", response.status_code)
         print("Publisher response:", response.text)
         return None
-
+# article, journal, affiliation, author, publisher działają
 if __name__ == "__main__":
-    for _ in range(2):
-        create_article()
+    #for _ in range(2):
+        #create_article()
     #for _ in range(2):
         #create_journal()
     #for _ in range(2):
