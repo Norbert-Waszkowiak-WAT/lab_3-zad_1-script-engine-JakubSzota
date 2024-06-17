@@ -14,7 +14,6 @@ public class Chapter {
     private Integer score;
     private String collection;
     private String title;
-    private Book book;
     @DBRef
     private Book book;
     @DBRef

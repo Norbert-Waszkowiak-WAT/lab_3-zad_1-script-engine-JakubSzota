@@ -8,16 +8,12 @@ import org.springframework.lang.Nullable;
 import java.util.List;
  
 @Data
-public class Book {
+public class Journal {
     @MongoId
     private String id;
-    private String isbn;
-    private Integer year;
+    private String issn;
     private Integer baseScore;
     private String title;
-    @Nullable
-    @DBRef
-    private Author editor;
     @DBRef
     private Publisher publisher;
 }
