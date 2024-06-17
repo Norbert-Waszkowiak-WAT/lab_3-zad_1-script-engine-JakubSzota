@@ -11,7 +11,6 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import pl.edu.wat.knowledge.entity.Author;
 import pl.edu.wat.knowledge.repository.AuthorRepository;
-import com.github.javafaker.Faker;
 import java.util.Random;
 
 @SpringBootTest
@@ -32,7 +31,7 @@ public abstract class AbstractContainerBaseTest {
     @BeforeEach
     public void setUpDatabase() {
         var author = new Author();
-        author.setName(javafaker.setName);
+        author.setName("Jan");
         author.setSurname("Kowalski");
         authorRepository.save(
                author
