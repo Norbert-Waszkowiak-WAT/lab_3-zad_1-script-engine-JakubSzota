@@ -95,6 +95,68 @@ def create_publisher():
         print("Publisher status:", response.status_code)
         print("Publisher response:", response.text)
         return None
+
+def create_book():
+    url = BASE_URL + '/book'
+    data = {
+        "isbn": fake.word(),
+        "year": fake.year(),
+        "baseScore": random.randint(1,30),
+        "title": fake.text(),
+        "editor": create_author(),
+        "publisher": create_publisher(),
+        "name": fake.company(),
+        "location": fake.city()
+    }
+    response = requests.post(url, json=data)
+    if response.status_code == 201:
+        print("book ok")
+        return response.json()
+    else:
+        print("book status:", response.status_code)
+        print("book response:", response.text)
+        return None
+
+
+
+def create_book():
+    url = BASE_URL + '/book'
+    data = {
+        "isbn": fake.word(),
+        "year": fake.year(),
+        "baseScore": random.randint(1,30),
+        "title": fake.text(),
+        "editor": [create_author(), create_author()],
+        "publisher": create_publisher(),
+        "name": fake.company(),
+        "location": fake.city()
+        "score": random.randint(1,30),
+        "collection": fake.word(),
+        "title": fake.text(),
+        "book": create_book(),
+        "authors": [
+            "string"
+  ]
+    }
+    response = requests.post(url, json=data)
+    if response.status_code == 201:
+        print("book ok")
+        return response.json()
+    else:
+        print("book status:", response.status_code)
+        print("book response:", response.text)
+        return None
+
+
+  "id": "string",
+  "score": 0,
+  "collection": "string",
+  "title": "string",
+  "book": "string",
+  "authors": [
+    "string"
+  ]
+
 # article, journal, affiliation, author, publisher działają
 if __name__ == "__main__":
     #for _ in range(2):
@@ -107,3 +169,5 @@ if __name__ == "__main__":
         #create_author()
     #for _ in range(2):
         #create_publisher()
+    #for _ in range(2):
+        #create_book()
